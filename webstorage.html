@@ -21,13 +21,12 @@
 		                var project = $("input[name='project']").val();
 		                var hours = $("input[name='hours']").val();
 		                var date = $("input[name='date']").val();
-
+					
 		                //strip html tags
 		                project = project.replace(/(<([^>]+)>)/ig, "");
 		                values.push(project);
 		                values.push(hours);
 		                values.push(date);
-
 		                if (project != "" && hours != "" && date != "") {
 		                    try {
 		                        localStorage.setItem(itemId, values.join(';'));
@@ -49,35 +48,6 @@
 					}		            
 				});
 		    });
-
-			function deleteItem() {
-			    var deleteItemDialog = new Array();
-			    $(".delete").each(function() {
-			        var id = $(this).find("span").attr("id");
-			        deleteItemDialog[id] = $("#"+id).dialog({
-			            autoOpen: false,
-			            resizable: false,
-			            height: 140,
-			            modal: true,
-			            show: 'fold',
-			            buttons: {
-			                'Delete Time': function() {
-			                    localStorage.removeItem(id);
-			                    getAllItems();
-			                    $(this).dialog("close");
-			                },
-			                Cancel: function() {
-			                    $(this).dialog("close");
-			                }
-			            }
-			        });
-			 
-			        $(this).click(function(){
-			            deleteItemDialog[id].dialog("open");
-			            return false;
-			        });
-			    });
-			}
 
 			function deleteItem(button) {
 				if (confirm("Are you sure you want to delete this time?")) {
